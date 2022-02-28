@@ -1,57 +1,41 @@
 # WM-22
+
 Web Mapping 2022, ESCGIT course project: creating a geoportal ...
 
-# How to do  it:
-You can use the code from this repo, but ensure you have :
-- [ ] **Postgres** and _postgis_ with a populated database
-- [ ] **Nodejs** with **pg**, **express** and **body-parser** packages installed 
+# How to do it:
 
-See below for details.
+For local development check [this](https://github.com/ayoubft/demo-postgis-nodejs).
 
-## 1. Download the code from this repo
+1. Go to https://dashboard.heroku.com/apps (create your account)
+2. Create new app (give it a name)
+3. Add postgres extension to your app in `Resources` tab
 
-## 2. Prepare the frontend i.e a website 
+   ![Screenshot_20220228_104913](https://user-images.githubusercontent.com/63267601/155961716-14fca10c-00db-4c7b-9570-71b66a3bcb02.png)
 
-### Build your web page 
+4. Choose `Hobby Dev` plan
 
-## 3. Prepare the backend
+   ![Screenshot_20220228_105027](https://user-images.githubusercontent.com/63267601/155961951-47187737-b58d-47e3-a081-2e1e320a2fe6.png)
 
-For the back end, we will be using `nodejs` for the server language and `postgresql` for our database because it supports `PostGIS` extension.
+5. Click on your newly created database
 
-### a. Prepare your database (`Postgres` and `PostGIS`) on your laptop
+   ![Screenshot_20220228_105211](https://user-images.githubusercontent.com/63267601/155962220-dcafe7de-fd4c-4d44-a68a-b263406e0903.png)
 
-* Install `Postgresql` from [here](https://www.postgresql.org/download/)
-* Activate PostGIS by running `CREATE EXTENSION postgis;`
-* Populate your databse
-![Screenshot_20220224_112838](https://user-images.githubusercontent.com/63267601/155507007-378a7f9d-64ef-4fba-a200-bbd98cf3b964.png)
+6. Go to settings and get you credentials
 
-### b. Install `nodejs` 
-1. Install nodejs from [here](https://nodejs.org/en/download/).
+   ![Screenshot_20220228_105314](https://user-images.githubusercontent.com/63267601/155962383-5a6e702c-7aee-4536-b3dd-4a84bea95205.png)
 
-2. Init your project by running and complete setup:
-```
-npm init
-```
+7. Connect to your database externally (I am using `DBeaver`)
 
-3. Install from `terminal` (_PowerShell_ or _cmd_ for **Windows**, _bash_,...) the needed `npm` packages : 
-```
-npm install pg
-npm install express
-npm install body-parser
-```
-4. Setup connection by changing `connections.js` parameters to your personal ones.
-5. Run to launch your app by running:
-```
-node index.js
-```
-![Screenshot_20220224_112945](https://user-images.githubusercontent.com/63267601/155507170-c1f9342b-51c1-4671-91a2-a43fffe8c4b4.png)
+   ![Screenshot_20220228_105903](https://user-images.githubusercontent.com/63267601/155963231-4351d83c-8016-4b7a-b74f-84895897defe.png)
 
-6. Enjoy your app at : `http://localhost:3000/`.
+8. Make it **SPATIAL**, and populate it (you can try from `qgis`) or export your tables as `.csv` and import them to heroku database
 
-7. For these spatial queries please fetch the **geometry** as `GeoJSON` and alias **geom** as: `ST_AsGeoJSON(geom) AS geom`
+   ![Screenshot_20220228_110039](https://user-images.githubusercontent.com/63267601/155963433-d2f191ed-f059-4753-a943-2e8cd2377677.png)
 
-8. Try like this query (maroc table needed to be in your db):
-```
-SELECT id, ST_AsGeoJSON(geom) AS geom FROM maroc
-```
-![ezgif-5-cb393bb8b4](https://user-images.githubusercontent.com/63267601/155508530-f9d03cb3-f43b-4185-bc7e-64defc1a7e0e.gif)
+9. Link your github repo
+
+   ![Screenshot_20220228_104745](https://user-images.githubusercontent.com/63267601/155961512-2467c310-294c-4697-8a70-6747183fa334.png)
+
+10. Deploy you app from `Deploy` tab using manual deploy
+
+    ![Screenshot_20220228_110513](https://user-images.githubusercontent.com/63267601/155964152-68f9bc5a-4917-4d76-81a8-bd0464bb6535.png)
